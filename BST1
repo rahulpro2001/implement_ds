@@ -1,0 +1,88 @@
+#include <iostream>
+using namespace std;
+ 
+class BST
+{
+    int data;
+    BST *left,*right;
+    public:
+        
+    BST();
+    BST(int val);
+    BST* inserty(BST*,int val);
+    void porder(BST*);
+    void preder(BST*);
+     void inorder(BST*);
+    
+};
+
+BST::BST(int val)
+{
+    data = val;
+    left=right=NULL;
+}
+
+BST::BST()
+    :data(0)
+    ,right(NULL)
+    ,left(NULL)
+{
+}
+
+BST* BST::inserty(BST *root,int val)
+{
+    if(root==NULL) return new BST(val);
+    else if(root->data > val)
+    root->left = inserty(root->left,val);
+    else 
+    root->right = inserty(root->right,val);
+    return root; 
+}
+
+void BST::porder(BST *root)
+{
+    if(root==NULL) return;
+    porder(root->left);
+    porder(root->right);
+    cout<<" tree ->"<<root->data;
+}
+
+
+void BST::preder(BST *root)
+{
+    if(root==NULL) return;
+      cout<<" tree ->"<<root->data;
+    preder(root->left);
+    preder(root->right);
+  
+}
+
+void BST::inorder(BST *root)
+{
+    if(root==NULL) return;
+    inorder(root->left);
+    cout<<" tree ->"<<root->data;
+    inorder(root->right);
+    
+}
+int main()
+{
+    int n;
+    cin>>n;
+    BST b,*root=NULL;
+    while(n--)
+    {
+        int val;cin>>val;
+        if(root==NULL)
+           root = b.inserty(root,val);
+           else
+           root = b.inserty(root,val);
+    }
+    cout<<"pos";
+    b.porder(root);
+    cout<<"pre ";
+    b.preder(root);
+    cout<<"in ";
+    b.inorder(root);
+    return 0;
+}
